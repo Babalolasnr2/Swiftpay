@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwiftPay - Mobile Money</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="you.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Home Page -->
+        <div class="page active" id="home-page">
+            <div class="header">
+                <div class="header-title">SwiftPay</div>
+                <div class="header-actions">
+                    <i class="fas fa-bell header-icon" id="notifications-btn"></i>
+                    <i class="fas fa-qrcode header-icon" id="scan-qr-btn"></i>
+                </div>
+            </div>
+            
+            <div class="balance-card">
+                <div class="balance-label">Available Balance</div>
+                <div class="balance-amount">₦25,430.00</div>
+                <div class="balance-actions">
+                    <button class="balance-btn" id="add-money-btn"><i class="fas fa-wallet"></i> Add Money</button>
+                    <button class="balance-btn" id="transfer-btn"><i class="fas fa-exchange-alt"></i> Transfer</button>
+                </div>
+            </div>
+            
+            <div class="quick-actions">
+                <div class="action-item" data-page="airtime-page">
+                    <div class="action-circle">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="action-name">Airtime</div>
+                </div>
+                <div class="action-item" data-page="data-page">
+                    <div class="action-circle">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="action-name">Data</div>
+                </div>
+                <div class="action-item" data-page="bills-page">
+                    <div class="action-circle">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="action-name">Bills</div>
+                </div>
+                <div class="action-item" data-page="transfer-page">
+                    <div class="action-circle">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="action-name">Transfer</div>
+                </div>
+                <div class="action-item" data-page="loans-page">
+                    <div class="action-circle">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <div class="action-name">Loans</div>
+                </div>
+                <div class="action-item" data-page="cards-page">
+                    <div class="action-circle">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="action-name">Cards</div>
+                </div>
+                <div class="action-item" data-page="savings-page">
+                    <div class="action-circle">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <div class="action-name">Savings</div>
+                </div>
+                <div class="action-item" data-page="more-page">
+                    <div class="action-circle">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <div class="action-name">More</div>
+                </div>
+            </div>
+            
+            <div class="section-header">
+                <div class="section-title">Recent Transactions</div>
+                <div class="section-link" id="see-all-transactions">See All</div>
+            </div>
+            
+            <div class="transactions-list" id="transactions-list">
+                <!-- Transactions loaded by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Transfer Page -->
+        <div class="page" id="transfer-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Transfer Money</div>
+            </div>
+            
+            <div class="beneficiaries">
+                <div class="form-label">Frequent Beneficiaries</div>
+                <div class="beneficiary-list" id="beneficiary-list">
+                    <!-- Loaded by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="transfer-form">
+                <div class="form-group">
+                    <label class="form-label">Bank</label>
+                    <select class="form-input" id="bank-select">
+                        <option value="">Select Bank</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Account Number</label>
+                    <input type="text" class="form-input" id="account-number" placeholder="Enter account number">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Amount</label>
+                    <input type="number" class="form-input" id="transfer-amount" placeholder="Enter amount">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description (Optional)</label>
+                    <input type="text" class="form-input" id="transfer-description" placeholder="Enter description">
+                </div>
+                
+                <button class="submit-btn" id="transfer-now-btn">Transfer Now</button>
+            </div>
+        </div>
+        
+        <!-- Airtime Page -->
+        <div class="page" id="airtime-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Buy Airtime</div>
+            </div>
+            
+            <div class="network-options" id="airtime-networks">
+                <!-- Loaded by JavaScript -->
+            </div>
+            
+            <div class="transfer-form">
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="airtime-phone" placeholder="Enter phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Amount</label>
+                    <input type="number" class="form-input" id="airtime-amount" placeholder="Enter amount">
+                </div>
+                
+                <button class="submit-btn" id="buy-airtime-btn">Buy Airtime</button>
+            </div>
+        </div>
+        
+        <!-- Data Page -->
+        <div class="page" id="data-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Buy Data</div>
+            </div>
+            
+            <div class="network-options" id="data-networks">
+                <!-- Loaded by JavaScript -->
+            </div>
+            
+            <div class="plans-container">
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" class="form-input" id="data-phone" placeholder="Enter phone number">
+                </div>
+                
+                <div class="section-header">
+                    <div class="section-title">Data Plans</div>
+                </div>
+                
+                <div class="data-plans" id="data-plans">
+                    <!-- Loaded by JavaScript -->
+                </div>
+                
+                <button class="submit-btn" id="buy-data-btn">Continue</button>
+            </div>
+        </div>
+        
+        <!-- Bills Page -->
+        <div class="page" id="bills-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Pay Bills</div>
+            </div>
+            
+            <div class="bill-categories" id="bill-categories">
+                <!-- Loaded by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Loans Page -->
+        <div class="page" id="loans-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Loans</div>
+            </div>
+            
+            <div class="loan-products" id="loan-products">
+                <!-- Loaded by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Cards Page -->
+        <div class="page" id="cards-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">My Cards</div>
+            </div>
+            
+            <div class="cards-container" id="cards-container">
+                <!-- Loaded by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Savings Page -->
+        <div class="page" id="savings-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">Savings</div>
+            </div>
+            
+            <div class="savings-products" id="savings-products">
+                <!-- Loaded by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Profile Page -->
+        <div class="page" id="profile-page">
+            <div class="page-header">
+                <div class="back-btn"><i class="fas fa-arrow-left"></i></div>
+                <div class="page-title">My Profile</div>
+            </div>
+            
+            <div class="profile-header">
+                <div class="profile-avatar">JD</div>
+                <div class="profile-info">
+                    <h3>John Doe</h3>
+                    <p>+234 812 345 6789</p>
+                    <p>john.doe@example.com</p>
+                </div>
+            </div>
+            
+            <div class="profile-menu">
+                <div class="menu-item" id="security-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="menu-name">Account Security</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+                
+                <div class="menu-item" id="history-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="menu-name">Transaction History</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+                
+                <div class="menu-item" id="notifications-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="menu-name">Notifications</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+                
+                <div class="menu-item" id="help-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="menu-name">Help & Support</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+                
+                <div class="menu-item" id="settings-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <div class="menu-name">Settings</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+                
+                <div class="menu-item" id="logout-menu">
+                    <div class="menu-item-left">
+                        <div class="menu-icon">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="menu-name">Logout</div>
+                    </div>
+                    <div><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active" data-page="home-page">
+                <div class="nav-icon"><i class="fas fa-home"></i></div>
+                <div>Home</div>
+            </div>
+            <div class="nav-item" data-page="transfer-page">
+                <div class="nav-icon"><i class="fas fa-exchange-alt"></i></div>
+                <div>Transfer</div>
+            </div>
+            <div class="nav-item" data-page="cards-page">
+                <div class="nav-icon"><i class="fas fa-credit-card"></i></div>
+                <div>Cards</div>
+            </div>
+            <div class="nav-item" data-page="savings-page">
+                <div class="nav-icon"><i class="fas fa-piggy-bank"></i></div>
+                <div>Savings</div>
+            </div>
+            <div class="nav-item" data-page="profile-page">
+                <div class="nav-icon"><i class="fas fa-user"></i></div>
+                <div>Profile</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="you.js"></script>
+</body>
+</html>
